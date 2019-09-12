@@ -6,7 +6,7 @@
 ###########
 
 export LANG=en_US.UTF-8
-##############################定义变量##########################################
+##############################定义版本变量########################################
 #zabbix_agent name
 Red_cent7_agent="zabbix-agent-3.4.14-1.el7.x86_64.rpm"
 Agent_version="3.4"
@@ -115,8 +115,13 @@ then
     systemctl enable zabbix-agent &>/dev/null
     echo -e  "\033[34;1mzabbix-agent install success ! \033[0m"
 else
-    echo -e  "\033[34;1mwget not install ! \033[0m"
-    exit 4
+    echo -e  "\033[34;1mwget  install ! \033[0m"
+    yum install -y wget &>/dev/null
+    if [ -f /usr/bin/wget ];then
+    else
+        echo -e  "\033[34;1m请检查网络与yum源 ! \033[0m"
+        exit 4
+    fi
 fi
 }
 
