@@ -118,6 +118,7 @@ else
     echo -e  "\033[34;1mwget  install ! \033[0m"
     yum install -y wget &>/dev/null
     if [ -f /usr/bin/wget ];then
+    echo "" >/dev/null
     else
         echo -e  "\033[34;1m请检查网络与yum源 ! \033[0m"
         exit 4
