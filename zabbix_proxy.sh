@@ -9,6 +9,7 @@ export LANG=en_US.UTF-8
 ##############################定义版本变量########################################
 #zabbix_proxy 
 Red_cent7_nam="zabbix-proxy-sqlite3-3.4.14-1.el7.x86_64.rpm"
+Red_cent7_sqlit="zabbix-proxy-sqlite3-3.4.14"
 Proxy_version="3.4"
 Red_cent7_url="https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/$Proxy_version/rhel/7/x86_64/$Red_cent7_nam"
 
