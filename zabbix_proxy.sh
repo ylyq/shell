@@ -105,11 +105,19 @@ if [ -f /usr/bin/wget ]
 then
     wget -P /usr/local/src/ $Red_cent7_url &>/dev/null
     yum install -y  /usr/local/src/$Red_cent7_nam &>/dev/null
+    if [ $? -ne 0 ];then
+        echo -e  "\033[34;1mzabbix-proxy install fail ! \033[0m"
+        exit 5
+    fi
+    mkdir -p /data/zabbix/
+    chown -R zabbix:zabbix /data
+    zcat /usr/share/doc/$Red_cent7_sqlit/schema.sql.gz | sqlite3 /data/zabbix/zabbix_proxy.db
     systemctl start zabbix-proxy &>/dev/null
     if [ $? -ne 0 ];then
         echo -e  "\033[34;1mzabbix-proxy start fail ! \033[0m"
         exit 5
     fi
+
     systemctl enable zabbix-proxy &>/dev/null
     echo -e  "\033[34;1mzabbix-proxy install success ! \033[0m"
 else
