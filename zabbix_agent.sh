@@ -135,10 +135,10 @@ tee $Zab_agent_conf <<EOF
 PidFile=/var/run/zabbix/zabbix_agentd.pid
 LogFile=/var/log/zabbix/zabbix_agentd.log
 LogFileSize=10
-Server=192.168.13.6
+Server=192.168.13.6   #修改成zabbix—server/zabbix-proxy的IP
 ListenPort=10050
 ListenIP=0.0.0.0
-ServerActive=192.168.13.6
+ServerActive=192.168.13.6   #修改成zabbix—server/zabbix-proxy的IP
 AllowRoot=1
 #Hostname=192.168.13.10
 #HostnameItem=system.hostname
