@@ -142,6 +142,7 @@ ServerActive=192.168.13.6
 AllowRoot=1
 #Hostname=192.168.13.10
 #HostnameItem=system.hostname
+Include=/etc/zabbix/zabbix_agentd.d/*.conf
 EOF
 if [ $? -ne 0 ];then
         echo -e  "\033[34;1m修改配置文件zabbix_agentd.conf出错! \033[0m"
