@@ -142,10 +142,13 @@ zabbix_proxy_conf() {
 echo '' > $Zab_proxy_conf
 tee $Zab_proxy_conf <<EOF
 ProxyMode=1
-Server=139.9.164.103  #需要修改成zabbix-sever的IP
-ServerPort=10051     #需要修改成zabbix-sever的端口
+#需要修改成zabbix-sever的IP
+Server=139.9.164.103
+#需要修改成zabbix-sever的端口
+ServerPort=10051
 ListenPort=10051
-Hostname=huapei      #需要修改成自定义的名字，zabbixweb界面的agent代理设置一样名字
+#需要修改成自定义的名字，zabbixweb界面的agent代理设置一样名字
+Hostname=huapei
 LogFile=/var/log/zabbix/zabbix_proxy.log
 LogFileSize=0
 PidFile=/run/zabbix/zabbix_proxy.pid
