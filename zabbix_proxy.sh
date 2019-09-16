@@ -107,7 +107,7 @@ then
     wget -P /usr/local/src/ $Red_cent7_url &>/dev/null
     yum install -y  /usr/local/src/$Red_cent7_nam &>/dev/null
     if [ $? -ne 0 ];then
-      yum install -y epel-release
+      yum install -y epel-release 2>/dev/null
       if [ $? -ne 0 ];then
         echo -e  "\033[34;1mzabbix-proxy install fail ! \033[0m"
         exit 5
