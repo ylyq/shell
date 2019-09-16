@@ -113,6 +113,7 @@ then
     mkdir -p /data/zabbix/
     chown -R zabbix:zabbix /data
     zcat /usr/share/doc/$Red_cent7_sqlit/schema.sql.gz | sqlite3 /data/zabbix/zabbix_proxy.db
+    zabbix_proxy_conf
     systemctl start zabbix-proxy &>/dev/null
     if [ $? -ne 0 ];then
         echo -e  "\033[34;1mzabbix-proxy start fail ! \033[0m"
@@ -168,7 +169,7 @@ if [ $? -ne 0 ];then
         echo -e  "\033[34;1m修改配置文件zabbix_proxy.conf出错! \033[0m"
         exit 6
     else
-        systemctl restart  zabbix-proxy &>/dev/null
+        #systemctl restart  zabbix-proxy &>/dev/null
         echo -e  "\033[34;1m大功告成! \033[0m"
 
 fi
@@ -181,4 +182,4 @@ get_OS
 check_proxy_exist
 check_proxy_port
 zabbix_proxy_install
-zabbix_proxy_conf
+#zabbix_proxy_conf
