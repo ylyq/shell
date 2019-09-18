@@ -120,7 +120,7 @@ then
     cd $version_dir
     mkdir $home_dir $home_dir/data $home_dir/tmp/ $home_dir/etc 
     echo -e  "\033[34;1mcmake begin ! \033[0m" 
-    cmake -DCMAKE_INSTALL_PREFIX=$home_dir -DMYSQL_DATADIR=$home_dir/data -DSYSCONFDIR=$home_dir/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_MEMORY_STORAGE_ENGINE=1 -DMYSQL_UNIX_ADDR=$home_dir/tmp/mysql.sock -DMYSQL_TCP_PORT=3306 -DENABLED_LOCAL_INFILE=ON -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DENABLED_PROFILING=ON -DWITH_DEBUG=0 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/usr/local/src/mysql-5.7.27/boost &>/dev/null
+    cmake -DCMAKE_INSTALL_PREFIX=$home_dir -DMYSQL_DATADIR=$home_dir/data -DSYSCONFDIR=$home_dir/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_MEMORY_STORAGE_ENGINE=1 -DMYSQL_UNIX_ADDR=$home_dir/tmp/mysql.sock -DMYSQL_TCP_PORT=3306 -DENABLED_LOCAL_INFILE=ON -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DENABLED_PROFILING=ON -DWITH_DEBUG=0 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/usr/local/src/$version_dir/boost &>/dev/null
     if [ $? -ne 0 ];then
         echo -e  "\033[34;1mcmake失败 ! \033[0m" 
         exit 4
