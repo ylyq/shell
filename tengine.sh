@@ -197,9 +197,7 @@ http
     default_type application/octet-stream;
     server_names_hash_bucket_size 3526;
     server_names_hash_max_size 4096;
-    log_format xiaobai '$remote_addr $http_x_forwarded_for [$time_local]'
-    '$host "$request_uri" $status'
-    '"$http_referer" "$http_user_agent"';
+    log_format xiaobai '\$remote_addr \$http_x_forwarded_for [\$time_local]' '\$host "\$request_uri" \$status' '"\$http_referer" "\$http_user_agent"';
     sendfile on;
     tcp_nopush on;
     keepalive_timeout 30;
@@ -231,7 +229,7 @@ EOF
 
 #创建相关目录
 mkdir $home_dir/conf/vhosts/
-tee $home_dir/conf/vhosts/default <<EOF
+tee $home_dir/conf/vhosts/default.conf <<EOF
 server{
         listen 80;
         server_name localhost;
