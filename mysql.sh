@@ -14,6 +14,7 @@ home_dir="/usr/local/mysql"   #软件家目录
 base_conf="/etc/my.cnf"       #软件配置文件
 Red_cent7_nam="mysql-boost-5.7.27.tar.gz"  #软件包名
 version="MySQL-5.7"  #软件版本
+version_dir="mysql-5.7.27"    #解压后的名称
 Red_cent7_url="https://mirrors.tuna.tsinghua.edu.cn/mysql/downloads/$version/$Red_cent7_nam"     #软件获取地址
 
 
@@ -109,14 +110,14 @@ then
     #下载解包
     wget -P /usr/local/src/ $Red_cent7_url &>/dev/null
     cd /usr/local/src/
-    tar xvf mysql-boost-5.7.27.tar.gz &>/dev/null
+    tar xvf $Red_cent7_nam &>/dev/null
     if [ $? -ne 0 ];then
         echo -e  "\033[34;1mtar解包失败 ! \033[0m" 
         exit 4
     fi
     
     #编译cmake
-    cd mysql-5.7.27
+    cd $version_dir
     mkdir $home_dir $home_dir/data $home_dir/tmp/ $home_dir/etc 
     echo -e  "\033[34;1mcmake begin ! \033[0m" 
     cmake -DCMAKE_INSTALL_PREFIX=$home_dir -DMYSQL_DATADIR=$home_dir/data -DSYSCONFDIR=$home_dir/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_MEMORY_STORAGE_ENGINE=1 -DMYSQL_UNIX_ADDR=$home_dir/tmp/mysql.sock -DMYSQL_TCP_PORT=3306 -DENABLED_LOCAL_INFILE=ON -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DENABLED_PROFILING=ON -DWITH_DEBUG=0 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/usr/local/src/mysql-5.7.27/boost &>/dev/null
