@@ -102,6 +102,8 @@ fi
 soft_install(){
 if [ -f /usr/bin/wget ]
 then
+    #下载依赖包
+    yum -y install make gcc-c++ cmake bison-devel ncurses-devel libaio libaio-devel  perl-Data-Dumper net-tools
     #下载解包
     wget -P /usr/local/src/ $Red_cent7_url &>/dev/null
     cd /usr/local/src/
