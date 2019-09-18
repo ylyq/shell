@@ -125,7 +125,7 @@ then
         exit 4
     fi
 
-    echo -e  "\033[34;1m make begin(会占用将近20min) ! \033[0m" 
+    echo -e  "\033[34;1m make begin(会占用将近50min) ! \033[0m" 
     #编译make
     make &>/dev/null
     if [ $? -ne 0 ];then
@@ -134,7 +134,7 @@ then
     fi
 
      #编译make install
-    echo -e  "\033[34;1m make install begin(会占用将近10min) ! \033[0m" 
+    echo -e  "\033[34;1m make install begin ! \033[0m" 
     make install  &>/dev/null
     if [ $? -ne 0 ];then
         echo -e  "\033[34;1m make install编译失败 ! \033[0m" 
