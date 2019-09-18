@@ -118,24 +118,24 @@ then
 
     #建用户目录
     useradd -r -s /sbin/nologin -M nginx
-    mkdir -p $home_dir{client,proxy,fastcgi,uwsgi,scgi}
+    mkdir -p $home_dir/client $home_dir/proxy $home_dir/fastcgi $home_dir/uwsgi $home_dir/scgi
 
     #编译
     cd $version_dir
     echo -e  "\033[34;1m configure begin ! \033[0m" 
 ./configure \
---prefix=/usr/local/nginx \
+--prefix=$home_dir
 --user=nginx \
 --group=nginx \
 --with-http_ssl_module \
 --with-http_flv_module \
 --with-http_stub_status_module \
 --with-http_gzip_static_module \
---http-client-body-temp-path=/var/tmp/nginx/client \
---http-proxy-temp-path=/var/tmp/nginx/proxy \
---http-fastcgi-temp-path=/var/tmp/nginx/fastcgi \
---http-uwsgi-temp-path=/var/tmp/nginx/uwsgi \
---http-scgi-temp-path=/var/tmp/nginx/scgi \
+--http-client-body-temp-path=$home_dir/client \
+--http-proxy-temp-path=$home_dir/proxy \
+--http-fastcgi-temp-path=$home_dir/fastcgi \
+--http-uwsgi-temp-path=$home_dir/uwsgi \
+--http-scgi-temp-path=$home_dir/scgi \
 --with-pcre \
 --with-file-aio \
 --with-http_secure_link_module  &>/dev/null
