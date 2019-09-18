@@ -102,8 +102,10 @@ fi
 soft_install(){
 if [ -f /usr/bin/wget ]
 then
-    #下载依赖包
+    #安装依赖包
+    echo -e  "\033[34;1m安装依赖 begin ! \033[0m" 
     yum -y install make gcc-c++ cmake bison-devel ncurses-devel libaio libaio-devel  perl-Data-Dumper net-tools &>/dev/null
+
     #下载解包
     wget -P /usr/local/src/ $Red_cent7_url &>/dev/null
     cd /usr/local/src/
@@ -112,21 +114,33 @@ then
         echo -e  "\033[34;1mtar解包失败 ! \033[0m" 
         exit 4
     fi
+    
     #编译cmake
     cd mysql-5.7.27
     mkdir $home_dir $home_dir/data $home_dir/tmp/ $home_dir/etc 
+    echo -e  "\033[34;1mcmake begin ! \033[0m" 
     cmake -DCMAKE_INSTALL_PREFIX=$home_dir -DMYSQL_DATADIR=$home_dir/data -DSYSCONFDIR=$home_dir/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_MEMORY_STORAGE_ENGINE=1 -DMYSQL_UNIX_ADDR=$home_dir/tmp/mysql.sock -DMYSQL_TCP_PORT=3306 -DENABLED_LOCAL_INFILE=ON -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DENABLED_PROFILING=ON -DWITH_DEBUG=0 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/usr/local/src/mysql-5.7.27/boost &>/dev/null
     if [ $? -ne 0 ];then
         echo -e  "\033[34;1mcmake失败 ! \033[0m" 
         exit 4
     fi
-    echo -e  "\033[34;1make && make install 开始(会占用将近30min) ! \033[0m" 
-    #编译
-    make && make install  &>/dev/null
+
+    echo -e  "\033[34;1make begin(会占用将近20min) ! \033[0m" 
+    #编译make
+    make &>/dev/null
     if [ $? -ne 0 ];then
-        echo -e  "\033[34;1mmake && make install编译失败 ! \033[0m" 
+        echo -e  "\033[34;1m make编译失败 ! \033[0m" 
         exit 4
     fi
+
+     #编译make install
+    echo -e  "\033[34;1make begin(会占用将近10min) ! \033[0m" 
+    make install  &>/dev/null
+    if [ $? -ne 0 ];then
+        echo -e  "\033[34;1m make install编译失败 ! \033[0m" 
+        exit 4
+    fi
+
     #建用户
     useradd mysql -s /sbin/nologin
     chown -R mysql:mysql $home_dir
