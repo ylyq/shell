@@ -156,6 +156,7 @@ then
     password=`grep "password" /tmp/mysql.txt |awk '{print $11}'`
     echo -e  "\033[34;1m 大功告成 ! \033[0m" 
     echo "mysql的root密码是: $password"
+fi
 }
 
 #$name 配置文件函数
