@@ -13,7 +13,7 @@ port=5672    #软件占用的端口
 home_dir="/usr/lib/rabbitmq"   #软件家目录
 base_conf="/etc/rabbitmq/rabbitmq-env.conf"       #软件配置文件
 Red_cent7_nam="rabbitmq-server-3.7.15-1.el7.noarch.rpm"  #软件包名
-version_dir="rabbitmq-server-3.7.5"   #软件解压后名
+version_dir="rabbitmq-server-3.7.15"   #软件解压后名
 Red_cent7_url="https://packagecloud.io/rabbitmq/rabbitmq-server/packages/el/7/$Red_cent7_nam/download.rpm"  #软件获取地址
 
 #依赖变量
