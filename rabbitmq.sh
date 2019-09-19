@@ -109,7 +109,7 @@ then
     #下载解包
     wget --content-disposition -P /usr/local/src/ $Red_cent7_url &>/dev/null
     cd /usr/local/src/
-    yum install -y $Red_cent7_nam
+    yum install -y $Red_cent7_nam &>/dev/null
 
     #配置文件函数
     soft_conf
@@ -122,12 +122,14 @@ then
         echo -e  "\033[34;1m erlang与rabbitmq版本不对应! \033[0m" 
         exit 4
     fi
+    echo -e  "\033[34;1m erlang与rabbitmq版本正确! \033[0m" 
     chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
     systemctl start rabbitmq-server
     if [ $? -ne 0 ];then
         echo -e  "\033[34;1m $name启动失败 ! \033[0m" 
         exit 4
     fi
+    echo -e  "\033[34;1m $name启动成功 ! \033[0m" 
     sudo rabbitmqctl add_user admin admin 
     sudo rabbitmqctl set_user_tags admin administrator 
     rabbitmqctl set_permissions -p "/" admin ".*" ".*" ".*"
@@ -136,6 +138,7 @@ then
         echo -e  "\033[34;1m weburl启动失败 ! \033[0m" 
         exit 4
     fi
+     echo -e  "\033[34;1m weburl启动成功 ! \033[0m" 
 fi
 }
 
