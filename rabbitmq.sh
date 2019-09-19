@@ -107,7 +107,7 @@ soft_install(){
 if [ -f /usr/bin/wget ]
 then
     #下载解包
-    wget -P /usr/local/src/ $Red_cent7_url &>/dev/null
+    wget --content-disposition -P /usr/local/src/ $Red_cent7_url &>/dev/null
     cd /usr/local/src/
     yum install -y $Red_cent7_nam
 
