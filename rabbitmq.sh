@@ -139,6 +139,7 @@ then
         exit 4
     fi
      echo -e  "\033[34;1m weburl启动成功 ! \033[0m" 
+     echo "web登入: ip+15672 用户名与密码：admin/admin"
 fi
 }
 
