@@ -1,6 +1,7 @@
 > 以后这里就是写安脚本的地方。
 
 ### zabbix
+> 脚本默认用的版本3.4.14
 ```
 git clone https://github.com/ylyq/shell.git
 cd shell 
@@ -9,6 +10,7 @@ sh  ..
 ```
 
 ### mysql
+> 脚本默认用的版本5.7.27
 ```
 git clone https://github.com/ylyq/shell.git
 cd shell 
@@ -17,6 +19,7 @@ sh  ..
 ```
 
 ### tengine 
+> 脚本默认用的版本2.2.1
 ```
 git clone https://github.com/ylyq/shell.git
 cd shell 
