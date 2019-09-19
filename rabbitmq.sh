@@ -153,11 +153,11 @@ EOF
 
 #$name的依赖安装
 depend_soft(){
-    erl &>/dev/null
+    rpm -qa |grep $depend_name-* &>/dev/null
     if [ $? -ne 0 ];then
         #安装依赖包
         echo -e  "\033[34;1m安装依赖 begin ! \033[0m" 
-        yum install -y   wget  iptables-services &>/dev/null
+        yum install -y   wget  iptables-services epel-release &>/dev/null
 
 
 tee /etc/yum.repos.d/erlang.repo <<EOF
@@ -169,7 +169,7 @@ gpgcheck=0
 gpgkey=https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/linux/centos/gpg
 EOF
         yum install -y $depend_name &>/dev/null
-        erl &>/dev/null
+        rpm -qa |grep $depend_name-* &>/dev/null
         if [ $? -ne 0 ];then
             echo -e  "\033[34;1m $depend_name安装失败 ! \033[0m" 
             exit 6
