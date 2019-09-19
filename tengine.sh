@@ -166,7 +166,7 @@ EOF
     #启动，加入开机启动
     systemctl start nginx
      if [ $? -ne 0 ];then
-        echo -e  "\033[34;1m nginx启动成功 ! \033[0m" 
+        echo -e  "\033[34;1m $name启动失败 ! \033[0m" 
         exit 4
     fi
     systemctl enable nginx
