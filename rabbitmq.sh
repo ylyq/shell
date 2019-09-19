@@ -17,8 +17,8 @@ version_dir="rabbitmq-server-3.7.5"   #软件解压后名
 Red_cent7_url="https://packagecloud.io/rabbitmq/rabbitmq-server/packages/el/7/$Red_cent7_nam/download.rpm"  #软件获取地址
 
 #依赖变量
-depend_name="erlang-22.0.7-1.el7.x86_64.rpm"
-depend_url="https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/centos/7/$depend_name"
+depend_name="erlang-22.0.7"
+
 
 
 ###########################写检查函数############################################
@@ -158,9 +158,17 @@ depend_soft(){
         #安装依赖包
         echo -e  "\033[34;1m安装依赖 begin ! \033[0m" 
         yum install -y   wget  iptables-services &>/dev/null
-        wget -P /usr/local/src/ $depend_url &>/dev/null
-        cd /usr/local/src/
-        yum install -y $depend_name
+
+
+tee /etc/yum.repos.d/erlang.repo <<EOF
+[erlang]
+name=erlang
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/centos/7/
+enabled=1
+gpgcheck=0
+gpgkey=https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/linux/centos/gpg
+EOF
+        yum install -y $depend_name &>/dev/null
         erl &>/dev/null
         if [ $? -ne 0 ];then
             echo -e  "\033[34;1m $depend_name安装失败 ! \033[0m" 
