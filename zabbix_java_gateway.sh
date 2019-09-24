@@ -100,7 +100,11 @@ then
     #下载安装
     wget -P /usr/local/src/ $Red_cent7_url &>/dev/null
     cd /usr/local/src/
-    yum install -y $Red_cent7_nam
+    yum install -y $Red_cent7_nam &>/dev/null
+    if [ $? -ne 0 ];then
+        echo -e  "\033[34;1m 下载失败 ! \033[0m" 
+        exit 4
+    fi
     systemctl enable zabbix-java-gateway.service
     systemctl start zabbix-java-gateway.service
      if [ $? -ne 0 ];then
