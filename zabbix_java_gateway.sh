@@ -10,8 +10,8 @@ export LANG=en_US.UTF-8
 name='zabbix_java_gateway'
 port=10052
 Red_cent7_nam="zabbix-java-gateway-3.4.14-1.el7.x86_64.rpm"
-Proxy_version="3.4"
-Red_cent7_url="https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/$Proxy_version/rhel/7/x86_64/$Red_cent7_nam"
+version="3.4"
+Red_cent7_url="https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/$version/rhel/7/x86_64/$Red_cent7_nam"
 
 
 
@@ -112,8 +112,10 @@ then
         exit 4
     fi
      echo -e  "\033[34;1m 大功告成 ! \033[0m" 
+else
+     echo -e  "\033[34;1m wget没有安装 \033[0m"
 fi
- echo -e  "\033[34;1m wget没有安装 \033[0m"
+
 }
 
 
