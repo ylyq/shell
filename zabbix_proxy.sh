@@ -172,6 +172,12 @@ StartTrappers=20
 ListenIP=0.0.0.0
 CacheSize=128M
 HistoryCacheSize=128M
+#javaGatewayIP一般就是在sever或者proxy机器上
+#JavaGateway=192.168.13.6
+#javaGateway的端口    
+#JavaGatewayPort=10052
+#开启的进程数       
+#StartJavaPollers=5  
 EOF
 if [ $? -ne 0 ];then
         echo -e  "\033[34;1m修改配置文件zabbix_proxy.conf出错! \033[0m"
