@@ -72,11 +72,7 @@ get_OS() {
 #判断$name是否运行
 pro_num=`ps aux |grep "$name" |wc -l`
 check_exist() {
-if [ -d $home_dir ]
-then
-    echo -e  "\033[34;1m$home_dir目录exist ! \033[0m"
-    exit 2
-elif [ $pro_num -lt 1 ]
+if [ $pro_num -lt 1 ]
 then
     echo -e  "\033[34;1m$name is runing ! \033[0m"
     exit 2
