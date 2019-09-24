@@ -105,8 +105,8 @@ then
         echo -e  "\033[34;1m 下载失败 ! \033[0m" 
         exit 4
     fi
-    systemctl enable zabbix-java-gateway.service
-    systemctl start zabbix-java-gateway.service
+    systemctl enable zabbix-java-gateway.service &>/dev/null
+    systemctl start zabbix-java-gateway.service &>/dev/null
      if [ $? -ne 0 ];then
         echo -e  "\033[34;1m 启动失败 ! \033[0m" 
         exit 4
