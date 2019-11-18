@@ -231,7 +231,7 @@ EOF
 mkdir $home_dir/conf/vhosts/
 tee $home_dir/conf/vhosts/default.conf <<EOF
 server{
-        listen 80;
+        listen 80 default;
         server_name localhost;
 	    access_log /usr/local/nginx/logs/default_access.log xiaobai;
         error_log /usr/local/nginx/logs/default_error.log error;
