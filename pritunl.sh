@@ -80,12 +80,12 @@ gpgcheck=1
 enabled=1
 EOF
 
-sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 7568D9BB55FF9E5287D586017AE645C0CF8E292A
-gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A > key.tmp
-sudo rpm --import key.tmp
+sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm &>/dev/null
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 7568D9BB55FF9E5287D586017AE645C0CF8E292A &>/dev/null
+gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A > key.tmp &>/dev/null
+sudo rpm --import key.tmp &>/dev/null
 rm -f key.tmp
-sudo yum -y install pritunl mongodb-org
+sudo yum -y install pritunl mongodb-org &>/dev/null
 if [ $? -ne 0 ];then
  echo -e  "\033[34;1m 安装pritunl与mongodb-org失败! \033[0m"
  exit 4
@@ -95,17 +95,15 @@ if [ $? -ne 0 ];then
  echo -e  "\033[34;1m 启动pritunl与mongodb-org失败! \033[0m"
  exit 4
 fi
-sudo systemctl enable mongod pritunl
+sudo systemctl enable mongod pritunl &>/dev/null
+
 echo -e  "\033[34;1m 大功告成! \033[0m"
 echo "数据库的key:"
 sudo pritunl setup-key
-echo "用户名与密码"
-sudo pritunl default-password
-echo "登入：http://ip"
+echo "登入：http://ip  输入上面的数据库key"
+echo "用户名与密码请在服务器执行命令获取：sudo pritunl default-password"
 }
 
 check_os
 get_OS
 soft_install
-
-
