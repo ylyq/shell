@@ -105,7 +105,7 @@ if [ -f /usr/bin/wget ]
 then
     #安装依赖包
     echo -e  "\033[34;1m安装依赖 begin ! \033[0m" 
-    yum -y install gcc pcre-devel openssl-devel wget &>/dev/null
+    yum -y install gcc pcre-devel openssl-devel wget lua-devel geoip-devel gperftools libxslt-devel libxml2 libxml2-dev gd-devel &>/dev/null
 
     #下载解包
     wget -P /usr/local/src/ $Red_cent7_url &>/dev/null
@@ -123,8 +123,7 @@ then
     #编译
     cd $version_dir
     echo -e  "\033[34;1m configure begin ! \033[0m" 
-    ./configure --prefix=$home_dir --user=nginx --group=nginx --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --with-http_addition_module  --with-http_realip_module --with-http_dav_module --http-client-body-temp-path=$home_dir/client --http-proxy-temp-path=$home_dir/proxy --http-fastcgi-temp-path=$home_dir/fastcgi --http-uwsgi-temp-path=$home_dir/uwsgi --http-scgi-temp-path=$home_dir/scgi --with-pcre --with-file-aio --with-force-exit --with-http_secure_link_module &>/dev/null
-
+    ./configure --prefix=/usr/local/nginx --user=nginx --group=nginx --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --with-http_addition_module --with-http_realip_module --with-http_dav_module --with-http_lua_module --with-http_dyups_module --with-http_dyups_lua_api --with-threads --with-http_v2_module --with-http_geoip_module --with-http_sub_module --with-google_perftools_module --with-http_xslt_module --with-http_image_filter_module --http-client-body-temp-path=/usr/local/nginx/client --http-proxy-temp-path=/usr/local/nginx/proxy --http-fastcgi-temp-path=/usr/local/nginx/fastcgi --http-uwsgi-temp-path=/usr/local/nginx/uwsgi --http-scgi-temp-path=/usr/local/nginx/scgi --with-pcre --with-file-aio --with-force-exit --with-http_secure_link_module &>/dev/null
 
     if [ $? -ne 0 ];then
         echo -e  "\033[34;1m configure失败 ! \033[0m" 
