@@ -233,7 +233,7 @@ tee $home_dir/conf/vhosts/default.conf <<EOF
 server{
         listen 80 default;
         server_name localhost;
-	    access_log /usr/local/nginx/logs/default_access.log xiaobai;
+	access_log /usr/local/nginx/logs/default_access.log xiaobai;
         error_log /usr/local/nginx/logs/default_error.log error;
 
 #        location /api/{
@@ -242,6 +242,17 @@ server{
 #          proxy_set_header X-Real-IP \$remote_addr;
 #          proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
 #     }
+
+	location /actuator {
+        	deny all;
+	}
+	location ~* /api/.*actuator {
+        	deny all;
+	}
+	location ~* swagger-ui\.html$ {
+    	deny all;
+	}
+
         location /{
       		root /data/webroot/release/;
       		autoindex on;
