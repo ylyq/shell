@@ -197,7 +197,20 @@ http
     default_type application/octet-stream;
     server_names_hash_bucket_size 3526;
     server_names_hash_max_size 4096;
-    log_format xiaobai '\$remote_addr \$http_x_forwarded_for [\$time_local]' '\$host "\$request_uri" \$status' '"\$http_referer" "\$http_user_agent"';
+    #log_format xiaobai '\$remote_addr \$http_x_forwarded_for [\$time_local]' '\$host "\$request_uri" \$status' '"\$http_referer" "\$http_user_agent"';
+    log_format xiaobai '{ "@timestamp": "\$time_iso8601", '
+      '"remote_addr": "\$remote_addr", '
+      '"referer": "\$http_referer", '
+      '"request": "\$request", '
+      '"status": \$status, '
+      '"bytes": \$body_bytes_sent, '
+      '"agent": "\$http_user_agent", '
+      '"x_forwarded": "\$http_x_forwarded_for", '
+      '"up_addr": "\$upstream_addr",'
+      '"up_host": "\$upstream_http_host",'
+      '"up_resp_time": "\$upstream_response_time",'
+      '"request_time": "\$request_time"'
+      ' }';
     sendfile on;
     tcp_nopush on;
     keepalive_timeout 30;
