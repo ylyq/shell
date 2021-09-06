@@ -228,7 +228,7 @@ http
     client_body_temp_path /usr/local/nginx/client_body_temp;
     proxy_temp_path /usr/local/nginx/proxy_temp;
     tcp_nodelay on;
-    charset utf-8,gbk;     #让浏览器访问中文目录不会乱码
+    charset utf-8;
     gzip on;
     gzip_min_length 1k;
     gzip_buffers 4 8k;
