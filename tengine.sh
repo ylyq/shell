@@ -218,8 +218,8 @@ http
     client_body_timeout 3m;
     send_timeout 3m;
     connection_pool_size 256;
-    client_header_buffer_size 1k;
-    large_client_header_buffers 8 4k;
+    client_header_buffer_size 1m;
+    large_client_header_buffers 8 4m;
     request_pool_size 4k;
     output_buffers 4 32k;
     postpone_output 1460;
